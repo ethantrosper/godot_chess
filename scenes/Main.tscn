@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcm7gkd0hq28b"]
+
+[ext_resource type="PackedScene" uid="uid://cyhitrreais8e" path="res://scenes/chess_board.tscn" id="1_m1cax"]
+
+[node name="Node" type="Node"]
+
+[node name="chessBoard" parent="." instance=ExtResource("1_m1cax")]

@@ -1,0 +1,707 @@
+[gd_scene load_steps=20 format=3 uid="uid://cyhitrreais8e"]
+
+[ext_resource type="Script" path="res://scripts/TileMap.gd" id="1_20bp5"]
+[ext_resource type="Texture2D" uid="uid://cxeyrvkqg64hw" path="res://assets/chess_project/chess_tilemap.aseprite" id="1_cc7co"]
+[ext_resource type="Texture2D" uid="uid://daonyooje65xy" path="res://assets/chess_project/white_rook.aseprite" id="3_0e6hh"]
+[ext_resource type="Texture2D" uid="uid://dtscvmmylh0d5" path="res://assets/chess_project/white_horse.aseprite" id="4_3b7xy"]
+[ext_resource type="Script" path="res://scripts/PieceTextureButton.gd" id="4_j1lb1"]
+[ext_resource type="Texture2D" uid="uid://cndxlso7wn16" path="res://assets/chess_project/move_indicator.aseprite" id="5_gpimf"]
+[ext_resource type="PackedScene" uid="uid://cdi74sti17duf" path="res://scenes/DragPreview.tscn" id="5_vohwh"]
+[ext_resource type="Texture2D" uid="uid://dqp5r53bo3nnb" path="res://assets/chess_project/white_bishop.aseprite" id="7_e4ulh"]
+[ext_resource type="Texture2D" uid="uid://cj2o3hdhxg4i0" path="res://assets/chess_project/white_king.aseprite" id="8_8je7p"]
+[ext_resource type="Texture2D" uid="uid://bqbmessjgb5vr" path="res://assets/chess_project/white_queen.aseprite" id="9_mw28b"]
+[ext_resource type="Texture2D" uid="uid://d0lu8d5ikf3fh" path="res://assets/chess_project/white_pawn.aseprite" id="10_65osp"]
+[ext_resource type="Texture2D" uid="uid://b0xph6rjlb2cf" path="res://assets/chess_project/black_pawn.aseprite" id="11_fmsoc"]
+[ext_resource type="Texture2D" uid="uid://d05b0wbaqynf1" path="res://assets/chess_project/black_rook.aseprite" id="12_nf0q5"]
+[ext_resource type="Texture2D" uid="uid://7251yh3je0ld" path="res://assets/chess_project/black_horse.aseprite" id="13_optu0"]
+[ext_resource type="Texture2D" uid="uid://b64036lxfxdyq" path="res://assets/chess_project/black_bishop.aseprite" id="14_kweq5"]
+[ext_resource type="Texture2D" uid="uid://lguki6uvww8k" path="res://assets/chess_project/black_queen.aseprite" id="15_ixl08"]
+[ext_resource type="Texture2D" uid="uid://ybdj45d0jfev" path="res://assets/chess_project/black_king.aseprite" id="16_nwfi1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lewmr"]
+texture = ExtResource("1_cc7co")
+texture_region_size = Vector2i(32, 32)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_v = true
+1:0/next_alternative_id = 3
+1:0/0 = 0
+1:0/1 = 1
+1:0/1/flip_v = true
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_1leoh"]
+tile_size = Vector2i(32, 32)
+sources/4 = SubResource("TileSetAtlasSource_lewmr")
+
+[node name="chessBoard" type="Node2D"]
+script = ExtResource("1_20bp5")
+
+[node name="TileMap" type="TileMap" parent="."]
+rotation = 0.000344112
+tile_set = SubResource("TileSet_1leoh")
+format = 2
+layer_0/tile_data = PackedInt32Array(458760, 4, 1, 1, 4, 1, 65537, 65540, 1, 2, 65540, 1, 196609, 65540, 1, 131074, 65540, 1, 65539, 65540, 1, 4, 65540, 1, 327681, 65540, 1, 262146, 65540, 1, 196611, 65540, 1, 131076, 65540, 1, 65541, 65540, 1, 6, 65540, 1, 458753, 65540, 1, 393218, 65540, 1, 327683, 65540, 1, 262148, 65540, 1, 196613, 65540, 1, 131078, 65540, 1, 65543, 65540, 1, 8, 65540, 1, 131080, 65540, 1, 196615, 65540, 1, 262150, 65540, 1, 327685, 65540, 1, 393220, 65540, 1, 458755, 65540, 1, 458757, 65540, 1, 393222, 65540, 1, 327687, 65540, 1, 393224, 65540, 1, 458759, 65540, 1, 393217, 4, 1, 262145, 4, 1, 131073, 4, 1, 65538, 4, 1, 196610, 4, 1, 327682, 4, 1, 458754, 4, 1, 393219, 4, 1, 458756, 4, 1, 458758, 4, 1, 393221, 4, 1, 393223, 4, 1, 327688, 4, 1, 262151, 4, 1, 196616, 4, 1, 262152, 65540, 1, 327686, 4, 1, 327684, 4, 1, 262149, 4, 1, 196614, 4, 1, 131079, 4, 1, 65544, 4, 1, 7, 4, 1, 65542, 4, 1, 131077, 4, 1, 196612, 4, 1, 262147, 4, 1, 131075, 4, 1, 65540, 4, 1, 5, 4, 1, 3, 4, 1, 131072, 4, 0, 327680, 65540, 65536)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 32.0
+offset_right = 288.0
+offset_bottom = 256.0
+
+[node name="GridContainer" type="GridContainer" parent="Control"]
+layout_direction = 3
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_right = 256.0
+grow_vertical = 0
+rotation = 3.14159
+pivot_offset = Vector2(128, 128)
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 8
+
+[node name="a1" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("3_0e6hh")
+texture_pressed = ExtResource("3_0e6hh")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="b1" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("4_3b7xy")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="c1" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("7_e4ulh")
+texture_pressed = ExtResource("7_e4ulh")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="d1" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("8_8je7p")
+texture_pressed = ExtResource("8_8je7p")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="e1" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("9_mw28b")
+texture_pressed = ExtResource("9_mw28b")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="f1" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("7_e4ulh")
+texture_pressed = ExtResource("7_e4ulh")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="g1" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("4_3b7xy")
+texture_pressed = ExtResource("4_3b7xy")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="h1" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("3_0e6hh")
+texture_pressed = ExtResource("3_0e6hh")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="a2" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("10_65osp")
+texture_pressed = ExtResource("10_65osp")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="b2" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("10_65osp")
+texture_pressed = ExtResource("10_65osp")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="c2" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("10_65osp")
+texture_pressed = ExtResource("10_65osp")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="d2" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("10_65osp")
+texture_pressed = ExtResource("10_65osp")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="e2" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("10_65osp")
+texture_pressed = ExtResource("10_65osp")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="f2" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("10_65osp")
+texture_pressed = ExtResource("10_65osp")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="g2" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("10_65osp")
+texture_pressed = ExtResource("10_65osp")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="h2" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("10_65osp")
+texture_pressed = ExtResource("10_65osp")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="a3" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="b3" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="c3" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="d3" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="e3" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="f3" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="g3" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="h3" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="a4" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="b4" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="c4" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="d4" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="e4" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="f4" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="g4" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="h4" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="a5" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="b5" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="c5" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="d5" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="e5" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="f5" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="g5" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="h5" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="a6" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="b6" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="c6" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="d6" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="e6" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="f6" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="g6" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="h6" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="a7" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("11_fmsoc")
+texture_pressed = ExtResource("11_fmsoc")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="b7" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("11_fmsoc")
+texture_pressed = ExtResource("11_fmsoc")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="c7" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("11_fmsoc")
+texture_pressed = ExtResource("11_fmsoc")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="d7" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("11_fmsoc")
+texture_pressed = ExtResource("11_fmsoc")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="e7" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("11_fmsoc")
+texture_pressed = ExtResource("11_fmsoc")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="f7" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("11_fmsoc")
+texture_pressed = ExtResource("11_fmsoc")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="g7" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("11_fmsoc")
+texture_pressed = ExtResource("11_fmsoc")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="h7" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("11_fmsoc")
+texture_pressed = ExtResource("11_fmsoc")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="a8" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("12_nf0q5")
+texture_pressed = ExtResource("12_nf0q5")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="b8" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("13_optu0")
+texture_pressed = ExtResource("13_optu0")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="c8" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("14_kweq5")
+texture_pressed = ExtResource("14_kweq5")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="d8" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("15_ixl08")
+texture_pressed = ExtResource("15_ixl08")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="e8" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("16_nwfi1")
+texture_pressed = ExtResource("16_nwfi1")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="f8" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("14_kweq5")
+texture_pressed = ExtResource("14_kweq5")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="g8" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("13_optu0")
+texture_pressed = ExtResource("13_optu0")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")
+
+[node name="h8" type="TextureButton" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("12_nf0q5")
+texture_pressed = ExtResource("12_nf0q5")
+texture_hover = ExtResource("5_gpimf")
+ignore_texture_size = true
+flip_v = true
+script = ExtResource("4_j1lb1")
+DRAGPREVIEW = ExtResource("5_vohwh")

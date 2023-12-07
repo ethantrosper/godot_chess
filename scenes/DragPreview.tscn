@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdi74sti17duf"]
+
+[ext_resource type="Script" path="res://scripts/DragPreview.gd" id="1_tlm17"]
+
+[node name="DragPreview" type="Sprite2D"]
+top_level = true
+z_as_relative = false
+position = Vector2(2.08165e-12, 2.08165e-12)
+skew = 0.261799
+offset = Vector2(-2.19067, -0.448288)
+script = ExtResource("1_tlm17")
