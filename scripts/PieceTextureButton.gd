@@ -37,7 +37,6 @@ func _get_drag_data(_at_position: Vector2):
 func _can_drop_data(_at_position, data):
 	#Best put in logic
 	var target_slot = get_name()
-	print(texture_normal.resource_name)
 	data["target_texture_normal"] = texture_normal
 	data["target_texture_pressed"] = texture_pressed
 	
