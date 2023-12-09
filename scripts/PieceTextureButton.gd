@@ -29,9 +29,12 @@ func _get_drag_data(_at_position: Vector2):
 	var dragPreview = DRAGPREVIEW.instantiate()
 	dragPreview.texture = texture_normal
 	add_child(dragPreview)
+	connect("mouse_entered", testing)
 	
 	return data
 	
+func testing():
+	print("mouse_entered ", get_name())
 # Can we drop something at this slot set to true for testing.
 # This is where some logic would go.
 func _can_drop_data(_at_position, data):

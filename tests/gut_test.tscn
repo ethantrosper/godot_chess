@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7y1nkdtyuj5m"]
+
+[ext_resource type="Script" path="res://addons/gut/test.gd" id="1_0rdsk"]
+[ext_resource type="Script" path="res://scripts/boardState.gd" id="2_nysvh"]
+
+[node name="GutTest" type="Node"]
+script = ExtResource("1_0rdsk")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("2_nysvh")
